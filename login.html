@@ -1,0 +1,285 @@
+<html>
+<head>
+<title>Diabetes Analysis</title>
+</head>
+<head>
+ <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<style>
+*{
+margin:0;
+padding:0;
+}
+body{
+color: #00008B;
+background-color:#ADD8E6;
+}
+
+table{
+text-align:center;
+color:white;
+width:90%;
+height:60%;
+border:3px solid white;
+margin-left:57px;
+margin-top:30px;
+border-radius:7px;
+}
+.but{
+width:50%;
+height:27%;
+color:#ADD8E6;
+
+cursor:pointer;
+background-color: #00008B;
+font-weight:bolder;
+border:none;
+}
+
+.but1{
+width:10%;
+margin-top:-4%;
+cursor:pointer;
+margin-left:83%;
+height:7%;
+border-radius:5px;
+color:#ADD8E6;
+background-color: #00008B;
+font-weight:bolder;
+border:none;
+}
+th, td {
+  padding:20px;
+}
+.weight{
+width:60px;
+}
+select{
+width:140px;
+}
+.reading{
+width:40px;
+}
+h1{
+text-align:center;
+margin:20px;
+}
+h2{
+text-align:center;
+color:red;
+}
+table{
+font-size:20px;
+font-weight:bolder;
+
+}
+
+#sn2{
+display:none;
+
+}
+
+#sna3{
+display:none;
+
+}
+#sna2{
+display:none;
+
+}
+
+#sn3{
+display:none;
+
+}
+
+
+</style>
+
+<body>
+<h1 >Welcome {{session['name']}}</h1>
+<h2 >Diabetes Analysis System</h2>
+<form method="post" action="diabeties" onsubmit="return sn()">
+<input type="button" onclick="location.href='logout'" value="logout" class="but1"/>
+
+
+<i>
+<table>
+
+<tr>
+<td colspan="2">FBS Record</td>
+<td colspan="2">Timming</td>
+</tr>
+
+
+<tr>
+<td>70<input type="range" name="FBS" min="70" max="210" onchange="update(this.value);" required>210</td>
+<td><input type="text" id="text"  class="reading" readonly required></td>
+<td colspan="2"> <input type="time" name="fbstime"  required/> </td>
+</tr>
+
+<tr>
+<td>Type Of Meal</td>
+</tr>
+
+
+
+<tr>
+<td><select name="meal" onchange="meals(this.value);">
+<option value="Breakfast">Breakfast</option>
+<option value="Lunch">Lunch</option>
+<option value="Dinner">Dinner</option>
+</select>
+</td>
+</tr>
+
+
+
+<tr id="sn1">
+<td >BreakFast</td>
+<td>Weight Of BreakFast (in Grams)</td>
+<td colspan="2">Timming (24hrs format)</td>
+</tr>
+
+
+<tr id="sna1">
+<td><select name="breakfast" >
+<option>Idily</option>
+<option>Dosa</option>
+<option>Vada</option>
+<option>Upma</option>
+<option>Parota</option>
+<option>Poori</option>
+<option>Fasting</option>
+</select>
+</td>
+<td><input type="number" name="bfweight" class="weight"/> </td>
+<td colspan="2"><input type="time" min="06:00" max="10:00" name="bftime"/> </td>
+</tr>
+
+
+<tr id="sn2">
+<td>Lunch</td>
+<td>Weight Of Lunch (in Grams)</td>
+<td colspan="2">Timming(24hrs format)</td>
+</tr>
+
+<tr id="sna2">
+<td ><select name="lunch">
+<option>Dal</option>
+<option>Rice</option>
+<option>Leafy Vegatables</option>
+<option>Chicken</option>
+<option>Vegatables</option>
+<option>Egg</option>
+<option>Fasting</option>
+</select>
+</td>
+<td><input type="number" name="lweight" class="weight" /> </td>
+<td colspan="2"><input type="time" name="ltime" min="12:00" max="15:00"/> </td>
+</tr>
+
+
+
+<tr id="sn3">
+<td>Dinner</td>
+<td>Weight Of Dinner(in Grams)</td>
+<td colspan="2">Timming (24hrs format)</td>
+</tr>
+
+<tr id="sna3">
+<td ><select name="dinner">
+<option>Rice</option>
+<option>Curd</option>
+<option>Chapathi</option>
+<option>Fruits</option>
+<option>Fasting</option>
+
+</select>
+</td>
+<td><input type="number" name="dweight" class="weight"/> </td>
+<td colspan="2"><input type="time" min="19:00" max="23:00" name="dtime"/> </td>
+</tr>
+
+
+
+<tr>
+<td colspan="2">Enter PP Record</td>
+<td colspan="2">Timming</td>
+</tr>
+<tr id="btn">
+
+<td>70<input type="range" name="pp" min="70" max="210"  onchange="update1(this.value);" required>210	</td>
+<td><input type="text" id="text1" class="reading" readonly required></td>
+<td colspan="2"><input type="time" name="pptime"  required/> </td>
+
+</tr>
+
+<tr>
+
+<td><input type="submit" class="but" value="Submit" ></td>
+<td><input type="button" class="but" value="Analysis"  onClick="location.href='Views'"></td>
+<td ><input type="button" class="but" value="Reports" onClick="location.href='Reports'"></td>
+<td><input type="button" class="but"  value="Info" onClick="location.href='info'"></td>
+</tr>
+</table>
+</i>
+</form>
+</body>
+<script>
+function update(val) {
+          document.getElementById('text').value=val; 
+        }
+
+function update1(val) {
+          document.getElementById('text1').value=val; 
+        }
+function sn(){
+	alert("Data Inserted Successfully");
+	return true;
+}
+
+
+function meals(val){
+var sn1=document.getElementById('sn1');
+var sn2=document.getElementById('sn2'); 
+var sn3=document.getElementById('sn3'); 
+var sna1=document.getElementById('sna1');
+var sna2=document.getElementById('sna2'); 
+var sna3=document.getElementById('sna3'); 
+
+if(val=='Breakfast'){
+sn1.style.display='table-row';
+sn2.style.display='none';
+sn3.style.display='none';
+sna1.style.display='table-row';
+sna2.style.display='none';
+sna3.style.display='none';
+
+}
+else if(val=='Lunch'){
+sn1.style.display='none';
+sn2.style.display='table-row';
+sn3.style.display='none';
+sna1.style.display='none';
+sna2.style.display='table-row';
+sna3.style.display='none';
+
+}
+else if(val=='Dinner'){
+sn1.style.display='none';
+sn2.style.display='none';
+sn3.style.display='table-row';
+sna1.style.display='none';
+sna2.style.display='none';
+sna3.style.display='table-row';
+
+}
+
+}
+</script>
+</html>

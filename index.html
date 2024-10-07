@@ -1,0 +1,122 @@
+<html>
+<head>
+<title>Login For Diabeties</title>
+ <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<style>
+*{
+margin:0;
+padding:0;
+}
+body{
+color: #00008B;
+background-color:#ADD8E6;
+}
+form{
+margin-top:6%;
+margin-left:25%;
+width:40%;
+height:75%;
+background-color:white;
+border-radius:6px;
+}
+form h1{
+text-align:center;
+padding:25px;
+border-bottom:1px solid #adadad;
+}
+
+.text{
+width:55%;
+height:7%;
+position:relative;
+top:13%;
+}
+label{
+margin-left:10%;
+top:13%;
+position:relative;
+}
+.but{
+width:22%;
+height:7%;
+position:relative;
+margin-left:36%;
+color:#ADD8E6;
+background-color: #00008B;
+font-weight:bolder;
+border:none;
+border-radius:3px;
+}
+#a{
+margin-left:43%;
+}
+#regis{
+position:relative;
+margin-left:13%;
+
+}
+b{
+margin-left:4%;
+}
+
+
+.div1{
+
+margin-left:63%;
+margin-top:17%;
+}
+.flash{
+padding-left:30%;
+color:red;
+}
+</style>
+
+<body>
+<i>
+<form action="login" method="post" onSubmit="return Validate()">
+<h1>LOGIN</h1>
+<label class="flash">
+ {% for message in get_flashed_messages() %}
+
+{{ message }}
+ {% endfor %}
+</label>
+<br>
+<br>
+<label>Enter the userName:</label>
+<input type="text" placeholder="Enter UserName" class="text" name="username"/><br>
+<br>
+<br>
+<label>Enter the PassWord:</label>
+<input type="password" id="password" class="text" placeholder="Enter PassWord" name="password" minlength="8" maxlength="20" /><br>
+<div class="div1">
+<input type="checkbox" id="check" onclick="show()"><b>Show PassWord</b></div>
+<br>
+<input type="submit" class="but" value="Login"/ ><br><br>
+<b>Doesn't Have Account</b><br>
+<a href="Register" id="regis" style="color:red;"/ >Register</a>
+<a href="verify" style="color:red;"id="a">FORGET PASSWORD</a>
+
+</form>
+</i>
+</body>
+<script>
+function show(){
+if(document.getElementById("check").checked){
+var password=document.getElementById("password");
+password.type="text";
+}
+else{
+var password=document.getElementById("password");
+password.type="password";
+}
+}
+
+</script>
+</html>

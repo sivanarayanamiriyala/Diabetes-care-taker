@@ -1,0 +1,15 @@
+create table register(fullname varchar(30),email varchar(50) unique,number varchar(10),dob date,username varchar(20) primary key,password varchar(20),question1 varchar(100),answer1 varchar(30),question2 varchar(100),answer2 varchar(30),question3 varchar(100),answer3 varchar(30));
+
+create table data(username varchar(20),RecordedDate date,FBS varchar(5),fbstime varchar(10),breakfast varchar(30),bfweight varchar(10),bftime varchar(10),lunch varchar(30),lweight varchar(10),ltime varchar(10),dinner varchar(30),dweight varchar(10) ,dtime varchar(10),PP varchar(5),pptime varchar(10), foreign key(username) references register(username));
+
+
+insert into data values('SivaN','2023-08-12','160','07:00','idly','100','07:00','Rice','100','13:00','Rice','100','21:00','170','22:00');
+  
+
+create table breakfasttable(username varchar(20),RecordedDate date,FBS varchar(5),fbstime varchar(10),breakfast varchar(10),bfweight varchar(10),bftime varchar(10),PP varchar(5),pptime varchar(10), foreign key(username) references register(username));
+
+
+create table lunchtable(username varchar(20),RecordedDate date,FBS varchar(5),fbstime varchar(10),lunch varchar(10),lweight varchar(10),ltime varchar(10),PP varchar(5),pptime varchar(10), foreign key(username) references register(username));
+
+
+create table dinnertable(username varchar(20),RecordedDate date,FBS varchar(5),fbstime varchar(10),dinner varchar(10),dweight varchar(10),dtime varchar(10),PP varchar(5),pptime varchar(10), foreign key(username) references register(username));

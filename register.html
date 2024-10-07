@@ -1,0 +1,176 @@
+<html>
+<head>
+<title>REGISTER</title>
+</head>
+<style>
+*{
+margin:0;
+padding:0;
+}
+body{
+color: #00008B;
+background-color:#ADD8E6;
+}
+h1{
+margin-top:20px;
+margin-left:35%;
+}
+.error{
+color:red;
+}
+form{
+width:70%;
+height:120%;
+background-color:white;
+margin-top:50px;
+margin-left:140px;
+border-radius:7px;
+text-align:center;
+}
+
+.text{
+width:45%;
+height:4%;
+}
+.but{
+width:22%;
+height:7%;
+color:#ADD8E6;
+background-color: #00008B;
+font-weight:bolder;
+border:none;
+border-radius:3px;
+}
+</style>
+<body>
+
+<i>
+<h1>REGISTRATION FORM</h1>
+<form action="store" method="post" onsubmit="return validate()"><br>
+<br>
+Enter Full Name:
+<span id="fullnameerror" class="error"></span>
+<input type="text" name="fullname" pattern="[a-zA-Z\s]+$" class="text" id="fullname" placeholder="Enter Your Full Name  "required><br><br>
+Enter the Email  ID:
+<span id="emailerror"class="error"></span>
+<input type="email" name="email" pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"  class="text" id="email" placeholder="Enter Your Email " required><br><br>
+Enter the Number:
+<span id="numbererror" class="error"></span>
+<input type="number" placeholder="Enter Your Number "  class="text" name="number" maxlength="10" id="number" minlength="10" required><br><br>
+Enter the DOB:
+<input type="date" name="dob" required/><br><br>
+Enter the UserName: 
+<span id="usernameerror" class="error"></span>
+<input type="text" name="username" placeholder="Enter Your UserName "  class="text"  id="username" required><br><br>
+Enter the Password:
+<input type="password"  placeholder="Enter PassWord "  class="text" minlength="8" name="password" id="pswd1" required><br><br>
+Re-Enter the Password:
+<input type="password" placeholder="Re-Enter Password "   class="text"minlength="8" id="pswd2" required><br><br>
+<span id="passworderror" class="error"></span>
+<br>
+Additional Verification:<br/><br>
+Select Question1 :
+<select name="question1" id="q1"required>
+<option>What is the name of a college you applied to but didn’t attend?</option>
+<option>What was the name of the first school you remember attending?</option>
+<option>Where was the destination of your most memorable school field trip?</option>
+<option>What was your math’s teacher's surname in your 8th year of school?</option>
+<option>What was the name of your first stuffed toy?</option>
+</select>
+<br><br>
+Answer:<input type="text" name="answer1"  class="text" maxlength="20" required/><br/><br>
+Select Question2 :
+<select name="question2" id="q2" required>
+<option>.What is the name of a college you applied to but didn’t attend?</option>
+<option>What was the name of the first school you remember attending?</option>
+<option>Where was the destination of your most memorable school field trip?</option>
+<option>What was your math’s teacher's surname in your 8th year of school?</option>
+<option>What was the name of your first stuffed toy?</option>
+</select>
+<br><br>
+Answer:<input type="text" name="answer2"  class="text" maxlength="20" required/><br><br>
+Select Question3 :
+<select name="question3" id="q3" required>
+<option>What is the name of a college you applied to but didn’t attend?</option>
+<option>What was the name of the first school you remember attending?</option>
+<option>Where was the destination of your most memorable school field trip?</option>
+<option>What was your math’s teacher's surname in your 8th year of school?</option>
+<option>What was the name of your first stuffed toy?</option>
+</select>
+<br><br>
+
+Answer:<input type="text" maxlength="20"   class="text" name="answer3" required/>
+<span id="questionerror" class="error"></span>
+
+<br>
+<br>
+ {% for message in get_flashed_messages() %}
+
+{{ message }}
+ {% endfor %}
+<br>
+<br>
+<input type="submit"  class="but" value="register" >
+
+</form>
+</i>
+</body>
+<script>
+function validate() {
+  var fullname = document.getElementById("fullname").value;
+  var email = document.getElementById("email").value;
+  var number = document.getElementById("number").value;
+  var username = document.getElementById("username").value;
+  var pswd1 = document.getElementById("pswd1").value;
+  var pswd2 = document.getElementById("pswd2").value;
+  var q1 = document.getElementById("q1").value;
+  var q2 = document.getElementById("q2").value;
+  var q3 = document.getElementById("q3").value;
+
+var fullnamepattern = /^[a-zA-Z\s]+$/;
+var emailpattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+var passwordpattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+var numberpattern = /^\d{10}$/;
+var usernamepattern = /^[a-zA-Z0-9]+$/;
+
+
+  if (!fullname.match(fullnamepattern)) {
+    document.getElementById("fullnameerror").innerHTML = "Name should only have Characters";
+    return false;
+  }
+
+  if (!email.match(emailpattern)) {
+    document.getElementById("emailerror").innerHTML = "Enter Valid Email";
+    return false;
+  }
+
+  if (!number.match(numberpattern)) {
+    document.getElementById("numbererror").innerHTML = "Enter a valid 10 digit number";
+    return false;
+  }
+
+  if (!username.match(usernamepattern)) {
+    document.getElementById("usernameerror").innerHTML = "Enter Valid UserName";
+    return false;
+  }
+
+  if (!pswd1.match(passwordpattern)) {
+    document.getElementById("passworderror").innerHTML = "Enter Strong Password";
+    return false;
+  }
+
+  if (q1 === q2 || q2 === q3 || q3 === q1) {
+    document.getElementById("questionerror").innerHTML = "Select Different Questions";
+    return false;
+  }
+
+  if (pswd1 !== pswd2) {
+    document.getElementById("passworderror").innerHTML = "Passwords do not match.";
+    return false;
+  }
+  return true;
+}
+
+</script>
+
+</html>
