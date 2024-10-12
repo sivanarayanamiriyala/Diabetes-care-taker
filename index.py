@@ -12,7 +12,7 @@ matplotlib.use('Agg')
 app=Flask(__name__)
 app.secret_key = "sivanarayana"  
 
-mydb = mysql.connector.connect(host="localhost",user="root",password="123456",database="Diabeties")	
+mydb = mysql.connector.connect(host="localhost",user="root",password="siva1234",database="Diabeties")	
 
 
 
@@ -179,7 +179,7 @@ def Analysis():
 			return redirect(url_for('visual'))
 		if meal=="Dinner":
 			mycursor = mydb.cursor(buffered=True)
-			mycursor.execute("SELECT PP,dweight FROM dinnertable where username=%s and dinner=%s order by dweight,PP",(username,dinner))
+			mycursor.execute("SELECT PP,dweight FROM dinnertable where username=%s and dinner=%s order by dweight,PPs",(username,dinner))
 			data= mycursor.fetchall()
 			for i in data:
 				X.append(i[0])
